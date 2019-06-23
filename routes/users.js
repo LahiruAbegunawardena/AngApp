@@ -30,4 +30,53 @@ router.post("/regUsr", function(req, res){
     });
 });
     
+router.post('/getAll', function(req, res){      // post :- localhost:3000/user/getAll
+    userMod.getAllDet(function(err, result) {
+        if(err) { throw err;}
+        if(result) {
+            res.json({
+                users : result
+            });
+        }
+    });
+});
+
+router.post('/getOne', function(req, res){
+    userMod.getUser(req.body.username, function(err, user){
+        if(err){ throw err; }
+        
+        if(user) {
+            res.json({
+                result_user: user
+            });
+        }
+    });
+});
+
+router.post('/updtOne', function(req, res){
+    userMod.updateUser(req.body, function(err, user){
+        if(err){ throw err; }
+        
+        if(user) {
+            res.json({
+                status: 'updated',
+                result_user: user
+            });
+        }
+    });
+});
+
+router.post('/dltOne', function(req, res){
+    userMod.deleteUser(req.body._id, function(err, user){
+        if(err){ throw err; }
+        
+        if(user) {
+            res.json({
+                status: 'deleted',
+                result_user: user
+            });
+        }
+    });
+});
+
 module.exports = router;

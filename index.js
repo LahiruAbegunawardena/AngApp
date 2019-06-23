@@ -23,8 +23,7 @@ mongoose.connect("mongodb://localhost:27017/AngAppDB", {useNewUrlParser: true}, 
     if (err) {
         console.log('db connection failed');    
     } if (db) {
-    console.log('db connected succesfully..');    
-
+        console.log('db connected succesfully..');    
     }
 });
 
